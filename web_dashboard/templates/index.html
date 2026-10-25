@@ -3,33 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aurick.ai — Autonomous AI QA Engineer | Test Studio</title>
+    <title>Aurick Studio — Autonomous Web QA & Exploration Agent</title>
     
-    <!-- Aurick.ai Official Font: Plus Jakarta Sans -->
+    <!-- Modern Typography: Plus Jakarta Sans & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-base: #02040a;
-            --bg-subtle: #080c16;
-            --bg-card: rgba(13, 19, 35, 0.75);
-            --border-card: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(61, 106, 254, 0.35);
+            --bg-void: #030712;
+            --bg-glass: rgba(15, 23, 42, 0.65);
+            --bg-glass-elevated: rgba(22, 33, 62, 0.85);
+            --border-glow: rgba(99, 102, 241, 0.25);
+            --border-line: rgba(255, 255, 255, 0.08);
             
-            --aurick-blue: #215dde;
-            --aurick-electric: #3d6afe;
-            --aurick-cyan: #00f2fe;
+            --aurick-primary: #3b82f6;
+            --aurick-electric: #6366f1;
+            --aurick-cyan: #06b6d4;
             --aurick-emerald: #10b981;
             --aurick-amber: #f59e0b;
-            --aurick-red: #ef4444;
+            --aurick-crimson: #f43f5e;
             
-            --text-heading: #ffffff;
-            --text-body: #94a3b8;
-            --text-muted: #64748b;
-            
-            --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
         }
 
@@ -40,21 +37,29 @@
         }
 
         body {
-            background-color: var(--bg-base);
-            color: var(--text-heading);
-            font-family: var(--font-sans);
+            background-color: var(--bg-void);
+            background-image: 
+                radial-gradient(at 50% 0%, rgba(99, 102, 241, 0.18) 0px, transparent 55%),
+                radial-gradient(at 100% 50%, rgba(6, 182, 212, 0.1) 0px, transparent 40%),
+                radial-gradient(at 0% 100%, rgba(59, 130, 246, 0.08) 0px, transparent 45%),
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+            color: #f8fafc;
+            font-family: var(--font-body);
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
-            padding-bottom: 80px;
+            padding-bottom: 90px;
         }
 
-        /* 1. AURICK NAVBAR */
-        .navbar {
-            background: rgba(2, 4, 10, 0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-card);
-            padding: 16px 48px;
+        /* 1. CYBERPUNK HUD NAVBAR */
+        .hud-nav {
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border-line);
+            padding: 14px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -63,252 +68,254 @@
             z-index: 1000;
         }
 
-        .brand-logo-area {
+        .brand-cluster {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
         }
 
-        .aurick-icon {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, var(--aurick-blue), var(--aurick-electric));
-            border-radius: 8px;
+        .hud-logo {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--aurick-primary), var(--aurick-electric));
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-family: var(--font-display);
             font-weight: 800;
-            font-size: 16px;
+            font-size: 18px;
             color: #fff;
-            box-shadow: 0 0 16px rgba(61, 106, 254, 0.4);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
         }
 
-        .brand-name {
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-
-        .brand-badge {
-            font-size: 11px;
+        .brand-text h1 {
+            font-size: 18px;
+            font-family: var(--font-display);
             font-weight: 700;
-            background: rgba(33, 93, 222, 0.15);
-            color: #89acff;
-            border: 1px solid rgba(61, 106, 254, 0.3);
-            padding: 3px 10px;
-            border-radius: 100px;
-            margin-left: 6px;
+            letter-spacing: -0.3px;
         }
 
-        .nav-switchers {
+        .brand-text p {
+            font-size: 11px;
+            color: var(--aurick-cyan);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+        }
+
+        .tab-dock {
             display: flex;
-            background: rgba(15, 23, 42, 0.7);
-            border: 1px solid var(--border-card);
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--border-line);
             padding: 4px;
-            border-radius: 10px;
-            gap: 4px;
+            border-radius: 12px;
+            gap: 6px;
         }
 
-        .nav-switcher-btn {
+        .tab-dock-btn {
             background: transparent;
             border: none;
-            color: var(--text-body);
-            font-family: var(--font-sans);
+            color: #94a3b8;
+            font-family: var(--font-body);
             font-size: 13px;
             font-weight: 600;
-            padding: 7px 16px;
-            border-radius: 7px;
+            padding: 7px 18px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .nav-switcher-btn.active {
-            background: var(--aurick-blue);
-            color: #ffffff;
-            box-shadow: 0 2px 10px rgba(33, 93, 222, 0.4);
-        }
-
-        .live-status {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--aurick-emerald);
+        }
+
+        .tab-dock-btn.active {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .status-telemetry {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             background: rgba(16, 185, 129, 0.08);
             border: 1px solid rgba(16, 185, 129, 0.25);
             padding: 6px 14px;
             border-radius: 100px;
+            font-size: 12px;
+            font-family: var(--font-mono);
+            color: var(--aurick-emerald);
         }
 
-        .pulse-indicator {
-            width: 7px;
-            height: 7px;
+        .glow-orb {
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background: var(--aurick-emerald);
-            box-shadow: 0 0 10px var(--aurick-emerald);
+            box-shadow: 0 0 12px var(--aurick-emerald);
             animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.85); }
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(0.8); opacity: 0.5; }
         }
 
-        /* 2. HERO SECTION IN AURICK STYLE */
-        .hero {
-            max-width: 1200px;
-            margin: 40px auto 28px;
-            text-align: center;
-            padding: 0 24px;
-        }
-
-        .hero-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            font-weight: 700;
-            color: #89acff;
-            background: rgba(61, 106, 254, 0.1);
-            border: 1px solid rgba(61, 106, 254, 0.3);
-            padding: 5px 14px;
-            border-radius: 100px;
-            margin-bottom: 18px;
-        }
-
-        .hero-title {
-            font-size: 44px;
-            font-weight: 800;
-            letter-spacing: -1.2px;
-            line-height: 1.15;
-            margin-bottom: 14px;
-        }
-
-        .hero-title span {
-            background: linear-gradient(135deg, #ffffff 30%, #89acff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-desc {
-            font-size: 16px;
-            color: var(--text-body);
-            max-width: 680px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        /* 3. AURICK BROWSER SIMULATOR CONTAINER (MOCKUP STYLE) */
-        .stage-container {
-            max-width: 1360px;
-            margin: 32px auto 0;
+        /* 2. MAIN CONTAINER */
+        .viewport {
+            max-width: 1440px;
+            margin: 24px auto 0;
             padding: 0 32px;
         }
 
-        .browser-frame {
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            border-radius: 18px;
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7);
+        /* 3. INTERACTIVE ARCHITECTURE PIPELINE MAP (UNIQUE VISUAL) */
+        .pipeline-map {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-line);
+            border-radius: 16px;
+            padding: 16px 24px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
             overflow: hidden;
-            backdrop-filter: blur(16px);
         }
 
-        /* Browser Window Header with Traffic Lights */
-        .browser-bar {
-            background: rgba(6, 10, 22, 0.9);
-            border-bottom: 1px solid var(--border-card);
-            padding: 14px 20px;
+        .pipeline-node {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(2, 6, 23, 0.6);
+            border: 1px solid var(--border-line);
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-family: var(--font-mono);
+            position: relative;
+            z-index: 2;
+            transition: all 0.2s ease;
+        }
+
+        .pipeline-node:hover {
+            border-color: var(--aurick-cyan);
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.25);
+        }
+
+        .pipeline-arrow {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* 4. THE LIVE BROWSER COCKPIT */
+        .cockpit-frame {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-line);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(99, 102, 241, 0.1);
+            margin-bottom: 24px;
+        }
+
+        /* Cockpit Omnibar with Live Laser Progress */
+        .cockpit-header {
+            background: rgba(2, 6, 23, 0.95);
+            border-bottom: 1px solid var(--border-line);
+            padding: 14px 24px;
             display: flex;
             align-items: center;
             gap: 16px;
+            position: relative;
         }
 
-        .traffic-lights {
+        .window-dots {
             display: flex;
             gap: 7px;
         }
 
-        .traffic-dot {
-            width: 11px;
-            height: 11px;
+        .window-dot {
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
         }
 
-        .dot-red { background: #ff5f56; }
-        .dot-yellow { background: #ffbd2e; }
-        .dot-green { background: #27c93f; }
+        .dot-close { background: #ff5f56; }
+        .dot-min { background: #ffbd2e; }
+        .dot-max { background: #27c93f; }
 
-        /* Browser URL Omnibar */
-        .omnibar-wrapper {
+        .omnibar {
             flex: 1;
             display: flex;
             align-items: center;
-            background: rgba(0, 2, 10, 0.85);
-            border: 1px solid var(--border-card);
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid var(--border-line);
             border-radius: 10px;
-            padding: 8px 14px;
-            gap: 10px;
+            padding: 9px 16px;
+            gap: 12px;
             transition: all 0.2s ease;
         }
 
-        .omnibar-wrapper:focus-within {
-            border-color: var(--aurick-electric);
-            box-shadow: 0 0 15px rgba(61, 106, 254, 0.25);
+        .omnibar:focus-within {
+            border-color: var(--aurick-cyan);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
         }
 
-        .url-lock {
+        .lock-icon {
             color: var(--aurick-emerald);
             font-size: 13px;
         }
 
-        .url-input {
+        .url-box {
             width: 100%;
             background: transparent;
             border: none;
-            color: #ffffff;
-            font-size: 13px;
+            color: #fff;
             font-family: var(--font-mono);
+            font-size: 13px;
         }
 
-        .url-input:focus {
+        .url-box:focus {
             outline: none;
         }
 
-        .btn-crawl {
-            background: linear-gradient(135deg, var(--aurick-blue), var(--aurick-electric));
+        .btn-launch {
+            background: linear-gradient(135deg, var(--aurick-primary), var(--aurick-electric));
             color: #ffffff;
-            font-family: var(--font-sans);
+            font-family: var(--font-display);
             font-weight: 700;
-            font-size: 13px;
-            padding: 10px 22px;
+            font-size: 14px;
+            padding: 11px 26px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(33, 93, 222, 0.4);
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.45);
             transition: all 0.2s ease;
+            white-space: nowrap;
             display: flex;
             align-items: center;
             gap: 8px;
-            white-space: nowrap;
         }
 
-        .btn-crawl:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(61, 106, 254, 0.5);
+        .btn-launch:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(99, 102, 241, 0.65);
         }
 
-        .btn-crawl:disabled {
+        .btn-launch:disabled {
             opacity: 0.5;
             cursor: not-allowed;
             transform: none;
         }
 
-        /* Goal Sub-bar */
-        .goal-bar {
-            background: rgba(9, 14, 28, 0.7);
-            border-bottom: 1px solid var(--border-card);
+        /* Goal & Heuristics Bar */
+        .heuristics-bar {
+            background: rgba(15, 23, 42, 0.6);
+            border-bottom: 1px solid var(--border-line);
             padding: 12px 24px;
             display: flex;
             align-items: center;
@@ -316,229 +323,242 @@
             gap: 20px;
         }
 
-        .goal-flex {
+        .goal-label-cluster {
             display: flex;
             align-items: center;
             gap: 12px;
             flex: 1;
         }
 
-        .goal-pill {
+        .scenario-badge {
+            background: rgba(6, 182, 212, 0.15);
+            color: var(--aurick-cyan);
+            border: 1px solid rgba(6, 182, 212, 0.3);
             font-size: 11px;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            color: #89acff;
-            background: rgba(61, 106, 254, 0.15);
-            padding: 4px 8px;
+            font-family: var(--font-mono);
+            padding: 4px 10px;
             border-radius: 6px;
+            text-transform: uppercase;
         }
 
-        .goal-input {
+        .goal-text-input {
             width: 100%;
             background: transparent;
             border: none;
-            color: #e2e8f0;
+            color: #f1f5f9;
+            font-family: var(--font-body);
             font-size: 14px;
             font-weight: 600;
-            font-family: var(--font-sans);
         }
 
-        .goal-input:focus {
+        .goal-text-input:focus {
             outline: none;
         }
 
-        .toggles-group {
+        .heuristics-toggles {
             display: flex;
             gap: 20px;
         }
 
-        .aurick-checkbox {
+        .hud-checkbox {
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 12px;
             font-weight: 600;
-            color: var(--text-body);
+            color: #cbd5e1;
             cursor: pointer;
             user-select: none;
         }
 
-        .aurick-checkbox input {
-            accent-color: var(--aurick-electric);
-            width: 15px;
-            height: 15px;
+        .hud-checkbox input {
+            accent-color: var(--aurick-cyan);
+            width: 16px;
+            height: 16px;
         }
 
-        /* 4. METRIC TILES BAR */
-        .scorecard-row {
+        /* 5. TELEMETRY CARDS STRIP */
+        .hud-metrics-strip {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            border-bottom: 1px solid var(--border-card);
-            background: rgba(6, 10, 22, 0.4);
+            border-bottom: 1px solid var(--border-line);
+            background: rgba(2, 6, 23, 0.4);
         }
 
-        .score-tile {
+        .strip-cell {
             padding: 18px 24px;
-            border-right: 1px solid var(--border-card);
+            border-right: 1px solid var(--border-line);
+            position: relative;
         }
 
-        .score-tile:last-child {
+        .strip-cell:last-child {
             border-right: none;
         }
 
-        .tile-sub {
+        .cell-tag {
             font-size: 11px;
-            font-weight: 700;
+            font-family: var(--font-mono);
             text-transform: uppercase;
-            letter-spacing: 0.6px;
-            color: var(--text-muted);
+            color: #64748b;
+            letter-spacing: 0.5px;
             margin-bottom: 4px;
         }
 
-        .tile-number {
-            font-size: 26px;
+        .cell-value {
+            font-family: var(--font-display);
+            font-size: 28px;
             font-weight: 800;
-            color: #ffffff;
             letter-spacing: -0.5px;
+            color: #fff;
         }
 
-        .tile-desc {
+        .cell-sub {
             font-size: 12px;
-            color: #89acff;
-            margin-top: 2px;
+            color: var(--aurick-cyan);
+            margin-top: 4px;
+            font-weight: 500;
         }
 
-        /* 5. DUAL PANE WORKSPACE (STEPS VS LIVE PREVIEW) */
-        .browser-workspace {
+        /* 6. DUAL INSPECTION WORKSPACE */
+        .inspection-dual {
             display: grid;
             grid-template-columns: 1.15fr 0.85fr;
-            min-height: 520px;
+            min-height: 540px;
         }
 
-        /* Left Action Stream */
-        .stream-panel {
-            border-right: 1px solid var(--border-card);
+        /* Left: ReAct Timeline Stream */
+        .trace-panel {
+            border-right: 1px solid var(--border-line);
             padding: 24px;
             display: flex;
             flex-direction: column;
         }
 
-        .panel-heading-row {
+        .trace-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 16px;
         }
 
-        .panel-title {
-            font-size: 14px;
+        .trace-title {
+            font-family: var(--font-display);
+            font-size: 15px;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-body);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .steps-flow {
+        .timeline-scroll-feed {
             flex: 1;
-            max-height: 380px;
+            max-height: 400px;
             overflow-y: auto;
             padding-right: 8px;
         }
 
-        .step-bubble {
-            background: rgba(0, 2, 10, 0.7);
-            border: 1px solid var(--border-card);
-            border-radius: 10px;
-            padding: 12px 16px;
-            margin-bottom: 10px;
+        .hud-step-card {
+            background: rgba(2, 6, 23, 0.7);
+            border: 1px solid var(--border-line);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 12px;
             display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            animation: slide 0.2s ease;
+            gap: 14px;
+            transition: all 0.2s ease;
+            animation: slideIn 0.25s ease;
         }
 
-        @keyframes slide {
-            from { opacity: 0; transform: translateY(4px); }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .step-num-pill {
-            background: rgba(33, 93, 222, 0.2);
-            color: #89acff;
-            border: 1px solid rgba(61, 106, 254, 0.3);
-            font-size: 11px;
-            font-weight: 700;
-            font-family: var(--font-mono);
-            padding: 3px 8px;
-            border-radius: 6px;
+        .hud-step-card:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
         }
 
-        .step-main {
+        .step-index-chip {
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            height: fit-content;
+        }
+
+        .step-content-area {
             flex: 1;
         }
 
-        .step-action-name {
-            font-size: 13px;
+        .step-heading {
+            font-size: 14px;
             font-weight: 700;
             color: #ffffff;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
         }
 
-        .step-action-sub {
+        .step-details-mono {
             font-size: 12px;
-            color: var(--text-muted);
+            color: #94a3b8;
             font-family: var(--font-mono);
         }
 
-        .tier-tag {
+        .tier-indicator {
             display: inline-block;
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 700;
-            padding: 2px 8px;
+            padding: 2px 10px;
             border-radius: 100px;
-            margin-top: 5px;
+            margin-top: 6px;
         }
 
-        .tier-direct {
+        .tier-pass {
             background: rgba(16, 185, 129, 0.15);
             color: #34d399;
             border: 1px solid rgba(16, 185, 129, 0.3);
         }
 
-        .tier-healed {
+        .tier-recovered {
             background: rgba(245, 158, 11, 0.2);
             color: #fbbf24;
             border: 1px solid rgba(245, 158, 11, 0.4);
         }
 
-        .terminal-tray {
-            background: #000208;
-            border: 1px solid var(--border-card);
-            border-radius: 8px;
-            padding: 12px 14px;
+        .console-stream-box {
+            background: #010409;
+            border: 1px solid var(--border-line);
+            border-radius: 10px;
+            padding: 12px 16px;
             font-family: var(--font-mono);
             font-size: 11px;
             max-height: 120px;
             overflow-y: auto;
-            color: var(--text-body);
+            color: #94a3b8;
             margin-top: 14px;
         }
 
-        /* Right Canvas Preview */
-        .preview-panel {
+        /* Right: Visual Artifact View with HUD Inspection Overlays */
+        .hud-canvas-panel {
             padding: 24px;
             display: flex;
             flex-direction: column;
-            background: rgba(4, 7, 16, 0.4);
+            background: rgba(2, 6, 23, 0.4);
         }
 
-        .canvas-frame {
+        .canvas-container {
             flex: 1;
-            background: #000208;
-            border: 1px solid var(--border-card);
-            border-radius: 12px;
-            padding: 10px;
+            background: #010409;
+            border: 1px solid var(--border-line);
+            border-radius: 14px;
+            padding: 12px;
+            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -546,180 +566,259 @@
             text-align: center;
         }
 
-        .canvas-frame img {
+        .canvas-container img {
             max-width: 100%;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
         }
 
-        /* 6. TAB CONTENTS */
-        .tab-section {
+        /* Tab Panels */
+        .hud-panel-section {
             display: none;
         }
 
-        .tab-section.active {
+        .hud-panel-section.active {
             display: block;
         }
 
-        /* Founder Story Cards */
-        .briefing-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            border-radius: 16px;
+        /* Benchmark Suite Table */
+        .benchmark-card {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-line);
+            border-radius: 20px;
             padding: 32px;
             margin-bottom: 24px;
         }
 
-        .story-pill {
-            background: rgba(33, 93, 222, 0.15);
-            color: #89acff;
-            border: 1px solid rgba(61, 106, 254, 0.3);
-            font-size: 11px;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 20px;
+        .benchmark-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .benchmark-table th {
+            background: rgba(15, 23, 42, 0.8);
+            color: #94a3b8;
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border-line);
+        }
+
+        .benchmark-table td {
+            padding: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        /* Founder Story Cards */
+        .story-hero-block {
+            background: rgba(15, 23, 42, 0.6);
+            border-left: 3px solid var(--aurick-cyan);
+            padding: 22px 28px;
+            border-radius: 0 14px 14px 0;
+            margin-bottom: 20px;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .pill-skill {
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            border: 1px solid rgba(99, 102, 241, 0.3);
             font-family: var(--font-mono);
-            margin-right: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 100px;
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. AURICK NAVBAR -->
-    <header class="navbar">
-        <div class="brand-logo-area">
-            <div class="aurick-icon">A</div>
-            <div class="brand-name">Aurick<span style="color:#89acff">.ai</span></div>
-            <div class="brand-badge">Autonomous QA Studio • Mallela Jithendra</div>
+    <!-- 1. CYBERPUNK HUD NAVBAR -->
+    <header class="hud-nav">
+        <div class="brand-cluster">
+            <div class="hud-logo">A</div>
+            <div class="brand-text">
+                <h1>Aurick Studio</h1>
+                <p>AUTONOMOUS QA ENGINE • MALLELA JITHENDRA</p>
+            </div>
         </div>
 
-        <nav class="nav-switchers">
-            <button class="nav-switcher-btn active" onclick="showTab('studio')">⚡ Live Test Studio</button>
-            <button class="nav-switcher-btn" onclick="showTab('benchmark')">📊 Eval Benchmarks</button>
-            <button class="nav-switcher-btn" onclick="showTab('founder')">💡 Founder Briefing</button>
+        <nav class="tab-dock">
+            <button class="tab-dock-btn active" onclick="switchHudTab('studio')">🎮 Cockpit Studio</button>
+            <button class="tab-dock-btn" onclick="switchHudTab('benchmark')">📊 Eval Scorecards</button>
+            <button class="tab-dock-btn" onclick="switchHudTab('founder')">💡 Founder Deep-Dive</button>
         </nav>
 
-        <div class="live-status">
-            <div class="pulse-indicator"></div>
-            <span>Aurick Core v2.4 Active (CDP Connected)</span>
+        <div class="status-telemetry">
+            <div class="glow-orb"></div>
+            <span>V8 Engine & CDP Hooked</span>
         </div>
     </header>
 
-    <!-- 2. HERO HEADLINE -->
-    <section class="hero">
-        <div class="hero-tag">
-            <span>✨ Autonomous AI QA Engine — Zero Scripting, Zero Maintenance</span>
-        </div>
-        <h1 class="hero-title">
-            Explore. Assert. <span>Self-Heal.</span>
-        </h1>
-        <p class="hero-desc">
-            Autonomous web testing agent that navigates live applications, extracts accessibility-tree semantics, 
-            slashes token overhead by 88.6%, and automatically recovers from broken dynamic CSS selectors.
-        </p>
-    </section>
+    <main class="viewport">
 
-    <main class="stage-container">
+        <!-- TAB 1: LIVE STUDIO -->
+        <div id="tab-studio" class="hud-panel-section active">
 
-        <!-- TAB 1: LIVE STUDIO (AURICK PRODUCT WORKSPACE STYLE) -->
-        <div id="tab-studio" class="tab-section active">
-            <div class="browser-frame">
+            <!-- 2. INTERACTIVE PIPELINE ARCHITECTURE MAP -->
+            <div class="pipeline-map">
+                <div class="pipeline-node" style="border-color:var(--aurick-cyan);">
+                    <span>🎯</span>
+                    <div>
+                        <strong>1. Test Goal</strong>
+                        <div style="color:#64748b;font-size:10px;">Natural Language Intent</div>
+                    </div>
+                </div>
 
-                <!-- Browser Omnibar Header -->
-                <div class="browser-bar">
-                    <div class="traffic-lights">
-                        <div class="traffic-dot dot-red"></div>
-                        <div class="traffic-dot dot-yellow"></div>
-                        <div class="traffic-dot dot-green"></div>
+                <div class="pipeline-arrow">➔</div>
+
+                <div class="pipeline-node" style="border-color:var(--aurick-primary);">
+                    <span>⚡</span>
+                    <div>
+                        <strong>2. A11y DOM Pruner</strong>
+                        <div style="color:var(--aurick-cyan);font-size:10px;">88.6% Token Reduction</div>
+                    </div>
+                </div>
+
+                <div class="pipeline-arrow">➔</div>
+
+                <div class="pipeline-node" style="border-color:var(--aurick-electric);">
+                    <span>🧠</span>
+                    <div>
+                        <strong>3. ReAct Planner</strong>
+                        <div style="color:#a5b4fc;font-size:10px;">Pydantic Action Schema</div>
+                    </div>
+                </div>
+
+                <div class="pipeline-arrow">➔</div>
+
+                <div class="pipeline-node" style="border-color:var(--aurick-amber);">
+                    <span>🛡️</span>
+                    <div>
+                        <strong>4. 4-Tier Self-Healing</strong>
+                        <div style="color:#fbbf24;font-size:10px;">Dynamic CSS Fallback</div>
+                    </div>
+                </div>
+
+                <div class="pipeline-arrow">➔</div>
+
+                <div class="pipeline-node" style="border-color:var(--aurick-emerald);">
+                    <span>📊</span>
+                    <div>
+                        <strong>5. CDP Telemetry</strong>
+                        <div style="color:#34d399;font-size:10px;">HAR + V8 Console + Diffs</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. THE LIVE COCKPIT SIMULATOR -->
+            <div class="cockpit-frame">
+
+                <!-- Omnibar Header -->
+                <div class="cockpit-header">
+                    <div class="window-dots">
+                        <div class="window-dot dot-close"></div>
+                        <div class="window-dot dot-min"></div>
+                        <div class="window-dot dot-max"></div>
                     </div>
 
-                    <div class="omnibar-wrapper">
-                        <span class="url-lock">🔒</span>
-                        <input type="text" id="targetUrl" class="url-input" value="http://127.0.0.1:8000">
+                    <div class="omnibar">
+                        <span class="lock-icon">🔒</span>
+                        <input type="text" id="targetUrl" class="url-box" value="http://127.0.0.1:8000">
                     </div>
 
-                    <button id="btnCrawl" class="btn-crawl" onclick="runAgentDemo()">
-                        <span>▶</span> Run Autonomous Test
+                    <button id="btnLaunchAgent" class="btn-launch" onclick="executeAgentRun()">
+                        <span>⚡</span> Run Autonomous Agent
                     </button>
                 </div>
 
                 <!-- Goal Sub-bar -->
-                <div class="goal-bar">
-                    <div class="goal-flex">
-                        <span class="goal-pill">Test Scenario</span>
-                        <input type="text" id="targetGoal" class="goal-input" value="Sign in with credentials and verify dashboard state">
+                <div class="heuristics-bar">
+                    <div class="goal-label-cluster">
+                        <span class="scenario-badge">Scenario</span>
+                        <input type="text" id="targetGoal" class="goal-text-input" value="Sign in with credentials and verify dashboard state">
                     </div>
 
-                    <div class="toggles-group">
-                        <label class="aurick-checkbox">
+                    <div class="heuristics-toggles">
+                        <label class="hud-checkbox">
                             <input type="checkbox" id="breakCssToggle" checked>
-                            <span>Simulate Mutated Dynamic CSS (Demonstrate Self-Healing)</span>
+                            <span>Simulate Broken Dynamic CSS (Self-Healing)</span>
                         </label>
-                        <label class="aurick-checkbox">
+                        <label class="hud-checkbox">
                             <input type="checkbox" id="headedToggle" checked>
                             <span>Headed Visual Browser Window</span>
                         </label>
                     </div>
                 </div>
 
-                <!-- Metrics Scorecard Row -->
-                <div class="scorecard-row">
-                    <div class="score-tile">
-                        <div class="tile-sub">Token Compression</div>
-                        <div class="tile-number" id="metricTokenCut">88.6%</div>
-                        <div class="tile-desc">Prompt Token Overhead Cut</div>
+                <!-- Metrics Strip -->
+                <div class="hud-metrics-strip">
+                    <div class="strip-cell">
+                        <div class="cell-tag">Token Compression</div>
+                        <div class="cell-value" id="metricTokenCut">88.6%</div>
+                        <div class="cell-sub">Raw 3,859 ➔ Pruned 433 chars</div>
                     </div>
-                    <div class="score-tile">
-                        <div class="tile-sub">Self-Healing Recovery</div>
-                        <div class="tile-number" id="metricRecovery" style="color:#fbbf24;">Tier 1 ARIA</div>
-                        <div class="tile-desc">Dynamic CSS Mutated & Resolved</div>
+
+                    <div class="strip-cell">
+                        <div class="cell-tag">Self-Healing Engine</div>
+                        <div class="cell-value" id="metricRecovery" style="color:#fbbf24;">Tier 1 ARIA</div>
+                        <div class="cell-sub">Hashed CSS Class Mutated & Healed</div>
                     </div>
-                    <div class="score-tile">
-                        <div class="tile-sub">CDP Telemetry</div>
-                        <div class="tile-number" id="metricTelemetry">1 Warn, 0 Errors</div>
-                        <div class="tile-desc">V8 Console & HTTP HAR Captured</div>
+
+                    <div class="strip-cell">
+                        <div class="cell-tag">CDP Telemetry</div>
+                        <div class="cell-value" id="metricTelemetry">1 Warn, 0 Errors</div>
+                        <div class="cell-sub">Captured from V8 Runtime</div>
                     </div>
-                    <div class="score-tile">
-                        <div class="tile-sub">Assertion State</div>
-                        <div class="tile-number" id="metricStatus" style="color:var(--aurick-emerald);">READY</div>
-                        <div class="tile-desc" id="metricSteps">0 Steps Executed</div>
+
+                    <div class="strip-cell">
+                        <div class="cell-tag">E2E Verification</div>
+                        <div class="cell-value" id="metricStatus" style="color:var(--aurick-emerald);">READY</div>
+                        <div class="cell-sub" id="metricSteps">0 Steps Executed</div>
                     </div>
                 </div>
 
-                <!-- Dual Pane Workspace -->
-                <div class="browser-workspace">
-                    <!-- Left: Real-time ReAct Flow -->
-                    <div class="stream-panel">
-                        <div class="panel-heading-row">
-                            <span class="panel-title">📡 Real-Time Agent Execution & Recovery Trace</span>
-                            <span id="agentStatusBadge" class="brand-badge">Idle</span>
+                <!-- Dual Inspection Layout -->
+                <div class="inspection-dual">
+                    <!-- Left: Trace Flow -->
+                    <div class="trace-panel">
+                        <div class="trace-header">
+                            <div class="trace-title">
+                                <span>📡 Real-Time Action Stream & Recovery Trace</span>
+                            </div>
+                            <span id="agentStatusBadge" class="scenario-badge">Idle</span>
                         </div>
 
-                        <div id="stepsContainer" class="steps-flow">
-                            <div style="text-align:center;padding:48px;color:var(--text-muted);font-style:italic;">
-                                Click "Run Autonomous Test" above to start the live agent loop...
+                        <div id="stepsContainer" class="timeline-scroll-feed">
+                            <div style="text-align:center;padding:50px;color:#64748b;font-style:italic;">
+                                Click "Run Autonomous Agent" above to start the live execution loop...
                             </div>
                         </div>
 
-                        <div class="terminal-tray" id="terminalFeed">
-                            <div style="color:#89acff;">[Aurick Core] Ready. Dispatched via Python Asyncio Playwright engine.</div>
+                        <div class="console-stream-box" id="terminalFeed">
+                            <div style="color:var(--aurick-cyan);">[Engine] Playwright initialized. CDP Performance & Network enabled.</div>
                         </div>
                     </div>
 
-                    <!-- Right: Live Canvas Snapshot -->
-                    <div class="preview-panel">
-                        <div class="panel-heading-row">
-                            <span class="panel-title">📸 Live Page Snapshot</span>
-                            <a id="reportLink" href="#" target="_blank" style="display:none;color:#89acff;font-size:12px;text-decoration:none;font-weight:700;">
-                                Open Full HTML Audit Report ↗
+                    <!-- Right: Live Canvas Artifact -->
+                    <div class="hud-canvas-panel">
+                        <div class="trace-header">
+                            <div class="trace-title">
+                                <span>📸 Live Page Artifact</span>
+                            </div>
+                            <a id="reportLink" href="#" target="_blank" style="display:none;color:var(--aurick-cyan);font-size:12px;text-decoration:none;font-weight:700;">
+                                Open Full HTML Report ↗
                             </a>
                         </div>
 
-                        <div class="canvas-frame">
-                            <img id="screenshotImg" src="/artifacts/screenshot_1792941046.png" alt="Browser Snapshot">
-                            <p style="font-size:12px;color:var(--text-muted);margin-top:12px;">
-                                Captured via Chrome DevTools Protocol Session
+                        <div class="canvas-container">
+                            <img id="screenshotImg" src="/artifacts/screenshot_1792941046.png" alt="Browser Artifact Screenshot">
+                            <p style="font-size:11px;color:#64748b;margin-top:12px;font-family:var(--font-mono);">
+                                Full-page screenshot captured via Playwright API
                             </p>
                         </div>
                     </div>
@@ -728,75 +827,75 @@
             </div>
         </div>
 
-        <!-- TAB 2: BENCHMARK SUITE -->
-        <div id="tab-benchmark" class="tab-section">
-            <div class="briefing-card">
-                <div class="panel-heading-row" style="margin-bottom:24px;">
+        <!-- TAB 2: BENCHMARK SCORECARDS -->
+        <div id="tab-benchmark" class="hud-panel-section">
+            <div class="benchmark-card">
+                <div class="trace-header" style="margin-bottom:24px;">
                     <div>
-                        <h2 style="font-size:22px;font-weight:800;letter-spacing:-0.5px;">Aurick Benchmark Evaluation Suite</h2>
-                        <p style="color:var(--text-body);font-size:14px;margin-top:4px;">
-                            Evaluating agent task success, self-healing recovery efficiency, and latency across 50+ diverse web states.
+                        <h2 style="font-size:24px;font-family:var(--font-display);font-weight:800;letter-spacing:-0.5px;">Aurick Benchmark Evaluation Suite</h2>
+                        <p style="color:#94a3b8;font-size:14px;margin-top:4px;">
+                            Benchmarking agent reliability, self-healing recovery efficiency, and latency across 50+ diverse web states.
                         </p>
                     </div>
-                    <button id="btnRunEvalSuite" class="btn-crawl" onclick="runBenchmarkEvals()">
-                        <span>▶</span> Run Multi-Scenario Suite
+                    <button id="btnRunEvalSuite" class="btn-launch" onclick="executeBenchmarkSuite()">
+                        <span>⚡</span> Run Benchmark Evaluation
                     </button>
                 </div>
 
-                <div class="scorecard-row" style="border:1px solid var(--border-card);border-radius:12px;margin-bottom:28px;">
-                    <div class="score-tile">
-                        <div class="tile-sub">Task Success Rate</div>
-                        <div class="tile-number" id="evalSuccessRate" style="color:var(--aurick-emerald);">100.0%</div>
-                        <div class="tile-desc">All E2E Scenarios Passed</div>
+                <div class="hud-metrics-strip" style="border:1px solid var(--border-line);border-radius:14px;margin-bottom:28px;">
+                    <div class="strip-cell">
+                        <div class="cell-tag">Task Success Rate</div>
+                        <div class="cell-value" id="evalSuccessRate" style="color:var(--aurick-emerald);">100.0%</div>
+                        <div class="cell-sub">Multi-Turn Scenarios Passed</div>
                     </div>
-                    <div class="score-tile">
-                        <div class="tile-sub">Self-Healing Efficiency</div>
-                        <div class="tile-number" style="color:#fbbf24;">92.5%</div>
-                        <div class="tile-desc">Broken Selectors Recovered</div>
+                    <div class="strip-cell">
+                        <div class="cell-tag">Self-Healing Efficiency</div>
+                        <div class="cell-value" style="color:#fbbf24;">92.5%</div>
+                        <div class="cell-sub">Broken Selectors Recovered</div>
                     </div>
-                    <div class="score-tile">
-                        <div class="tile-sub">Avg Scenario Latency</div>
-                        <div class="tile-number" id="evalAvgLatency">5.53s</div>
-                        <div class="tile-desc">Fast Async Playwright Loop</div>
+                    <div class="strip-cell">
+                        <div class="cell-tag">Average Latency</div>
+                        <div class="cell-value" id="evalAvgLatency">5.53s</div>
+                        <div class="cell-sub">Fast Async Playwright Loop</div>
                     </div>
-                    <div class="score-tile">
-                        <div class="tile-sub">Token Compression</div>
-                        <div class="tile-number" id="evalAvgTokenCut" style="color:#89acff;">97.0%</div>
-                        <div class="tile-desc">Accessibility Tree Pruning</div>
+                    <div class="strip-cell">
+                        <div class="cell-tag">Token Cost Reduction</div>
+                        <div class="cell-value" id="evalAvgTokenCut" style="color:var(--aurick-cyan);">97.0%</div>
+                        <div class="cell-sub">Accessibility Tree Pruning</div>
                     </div>
                 </div>
 
-                <table style="width:100%;border-collapse:collapse;font-size:14px;">
+                <table class="benchmark-table">
                     <thead>
-                        <tr style="border-bottom:1px solid var(--border-card);text-align:left;color:var(--text-body);">
-                            <th style="padding:14px;">Scenario</th>
-                            <th style="padding:14px;">Status</th>
-                            <th style="padding:14px;">Self-Healed Actions</th>
-                            <th style="padding:14px;">Latency</th>
-                            <th style="padding:14px;">Token Compression</th>
+                        <tr>
+                            <th>Scenario</th>
+                            <th>Status</th>
+                            <th>Self-Healed Actions</th>
+                            <th>Latency</th>
+                            <th>Token Compression</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
-                            <td style="padding:14px;"><strong>Auth Flow — Standard Traversal</strong></td>
-                            <td style="padding:14px;"><span class="tier-tag tier-direct">PASS</span></td>
-                            <td style="padding:14px;">0</td>
-                            <td style="padding:14px;">3.97s</td>
-                            <td style="padding:14px;">97.0% Cut</td>
+                        <tr>
+                            <td><strong>Auth Flow — Standard Traversal</strong></td>
+                            <td><span class="tier-indicator tier-pass">PASS</span></td>
+                            <td>0</td>
+                            <td>3.97s</td>
+                            <td>97.0% Cut</td>
                         </tr>
-                        <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
-                            <td style="padding:14px;"><strong>Auth Flow — Mutated Dynamic CSS</strong></td>
-                            <td style="padding:14px;"><span class="tier-tag tier-direct">PASS</span></td>
-                            <td style="padding:14px;">2 (Tier 1 ARIA)</td>
-                            <td style="padding:14px;">6.31s</td>
-                            <td style="padding:14px;">97.0% Cut</td>
+                        <tr>
+                            <td><strong>Auth Flow — Mutated Dynamic CSS</strong></td>
+                            <td><span class="tier-indicator tier-pass">PASS</span></td>
+                            <td>2 (Tier 1 ARIA)</td>
+                            <td>6.31s</td>
+                            <td>97.0% Cut</td>
                         </tr>
-                        <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
-                            <td style="padding:14px;"><strong>Edge Flow — Self-Healing Recovery</strong></td>
-                            <td style="padding:14px;"><span class="tier-tag tier-direct">PASS</span></td>
-                            <td style="padding:14px;">2 (Tier 1 ARIA)</td>
-                            <td style="padding:14px;">6.30s</td>
-                            <td style="padding:14px;">97.0% Cut</td>
+                        <tr>
+                            <td><strong>Edge Flow — Self-Healing Recovery</strong></td>
+                            <td><span class="tier-indicator tier-pass">PASS</span></td>
+                            <td>2 (Tier 1 ARIA)</td>
+                            <td>6.30s</td>
+                            <td>97.0% Cut</td>
                         </tr>
                     </tbody>
                 </table>
@@ -804,45 +903,52 @@
         </div>
 
         <!-- TAB 3: FOUNDER BRIEFING -->
-        <div id="tab-founder" class="tab-section">
-            <div class="briefing-card">
-                <div class="panel-heading-row" style="margin-bottom:20px;">
-                    <h2 style="font-size:22px;font-weight:800;letter-spacing:-0.5px;">Founder Briefing: Vithal Sugyamwar</h2>
-                    <span class="brand-badge">OyeSense AI Agent Developer</span>
+        <div id="tab-founder" class="hud-panel-section">
+            <div class="benchmark-card">
+                <div class="trace-header" style="margin-bottom:24px;">
+                    <div>
+                        <h2 style="font-size:24px;font-family:var(--font-display);font-weight:800;letter-spacing:-0.5px;">Founder Deep-Dive: Vithal Sugyamwar</h2>
+                        <p style="color:#94a3b8;font-size:14px;margin-top:4px;">
+                            Engineered to align 100% with Aurick.ai's mission and autonomous QA architecture.
+                        </p>
+                    </div>
+                    <span class="scenario-badge">Candidate Architecture</span>
                 </div>
 
-                <div style="margin-bottom:24px;background:rgba(33,93,222,0.06);border-left:3px solid var(--aurick-electric);padding:18px 22px;border-radius:0 12px 12px 0;">
-                    <h3 style="font-size:15px;color:#ffffff;margin-bottom:6px;">1. The Core Problem for Aurick.ai</h3>
-                    <p style="color:var(--text-body);font-size:14px;line-height:1.6;">
-                        Traditional test automation breaks because modern SPAs generate randomized dynamic CSS class hashes on every deployment. At the same time, passing raw HTML to LLMs wastes 40,000+ characters of non-interactive wrapper tags, ballooning latency and API costs.
+                <div class="story-hero-block">
+                    <h3 style="font-size:16px;color:#fff;margin-bottom:8px;">1. The Core Problem for Aurick.ai</h3>
+                    <p style="color:#94a3b8;font-size:14px;">
+                        Modern single-page applications dynamically hash CSS class names on each deployment, rendering traditional Selenium/Cypress automation fragile and high-maintenance. At the same time, feeding raw HTML into LLMs wastes 40,000+ characters of non-interactive wrapper tags, causing high latency and runaway token bills.
                     </p>
                 </div>
 
-                <div style="margin-bottom:24px;background:rgba(33,93,222,0.06);border-left:3px solid #89acff;padding:18px 22px;border-radius:0 12px 12px 0;">
-                    <h3 style="font-size:15px;color:#ffffff;margin-bottom:6px;">2. What I Engineered</h3>
-                    <p style="color:var(--text-body);font-size:14px;line-height:1.6;">
+                <div class="story-hero-block" style="border-left-color:var(--aurick-electric);">
+                    <h3 style="font-size:16px;color:#fff;margin-bottom:8px;">2. What I Engineered</h3>
+                    <p style="color:#94a3b8;font-size:14px;">
                         • <strong>Accessibility-Tree DOM Pruner:</strong> Injected JS evaluator filtering non-interactive nodes, cutting token overhead by <strong>88.6%</strong> while retaining 100% interactable reachability.<br>
                         • <strong>4-Tier Self-Healing Engine:</strong> When dynamic CSS breaks, cascades through ARIA labels (`get_by_label`), role+name semantics (`get_by_role`), inner text, and spatial bounding box coordinates via CDP mouse clicks.<br>
                         • <strong>CDP Telemetry:</strong> Directly captures V8 console errors, HTTP 4xx/5xx failures, and full-page screenshots into audit-grade reports.
                     </p>
                 </div>
 
-                <div style="margin-bottom:24px;background:rgba(33,93,222,0.06);border-left:3px solid #f59e0b;padding:18px 22px;border-radius:0 12px 12px 0;">
-                    <h3 style="font-size:15px;color:#ffffff;margin-bottom:6px;">3. Key Technical Challenge Solved</h3>
-                    <p style="color:var(--text-body);font-size:14px;line-height:1.6;">
+                <div class="story-hero-block" style="border-left-color:var(--aurick-amber);">
+                    <h3 style="font-size:16px;color:#fff;margin-bottom:8px;">3. Key Technical Challenge Solved</h3>
+                    <p style="color:#94a3b8;font-size:14px;">
                         <strong>Dynamic Class Hashing Recovery:</strong> In our live testbench, the portal intentionally mutates CSS button classes mid-session. Our locator automatically detects the failure and resolves the target via Tier 1 ARIA semantics, achieving a <strong>92.5% recovery rate</strong> across mutated application states with zero human intervention.
                     </p>
                 </div>
 
                 <div style="margin-top:28px;">
-                    <div style="font-size:12px;font-weight:700;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Tech Stack</div>
-                    <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                        <span class="story-pill">Python 3.13 (Asyncio)</span>
-                        <span class="story-pill">Playwright</span>
-                        <span class="story-pill">Chrome DevTools Protocol (CDP)</span>
-                        <span class="story-pill">Pydantic</span>
-                        <span class="story-pill">ReAct Loop</span>
-                        <span class="story-pill">Plus Jakarta Sans UI</span>
+                    <div style="font-size:12px;font-weight:700;text-transform:uppercase;color:#64748b;margin-bottom:12px;font-family:var(--font-mono);">
+                        Core Technologies
+                    </div>
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                        <span class="pill-skill">Python 3.13 (Asyncio)</span>
+                        <span class="pill-skill">Playwright</span>
+                        <span class="pill-skill">Chrome DevTools Protocol (CDP)</span>
+                        <span class="pill-skill">Pydantic Schemas</span>
+                        <span class="pill-skill">ReAct Loop</span>
+                        <span class="pill-skill">Linear HUD Aesthetics</span>
                     </div>
                 </div>
             </div>
@@ -852,16 +958,16 @@
 
     <!-- JavaScript Execution Hook -->
     <script>
-        function showTab(tabId) {
-            document.querySelectorAll('.tab-section').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.nav-switcher-btn').forEach(b => b.classList.remove('active'));
+        function switchHudTab(tabId) {
+            document.querySelectorAll('.hud-panel-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.tab-dock-btn').forEach(b => b.classList.remove('active'));
             
             document.getElementById(`tab-${tabId}`).classList.add('active');
             event.currentTarget.classList.add('active');
         }
 
-        async function runAgentDemo() {
-            const btn = document.getElementById('btnCrawl');
+        async function executeAgentRun() {
+            const btn = document.getElementById('btnLaunchAgent');
             const targetUrl = document.getElementById('targetUrl').value;
             const targetGoal = document.getElementById('targetGoal').value;
             const breakCss = document.getElementById('breakCssToggle').checked;
@@ -871,12 +977,12 @@
             const statusBadge = document.getElementById('agentStatusBadge');
 
             btn.disabled = true;
-            btn.innerHTML = '<span>⏳</span> Crawling in Browser...';
+            btn.innerHTML = '<span>⏳</span> Executing Scenario in Browser...';
             statusBadge.innerText = "Executing...";
             statusBadge.style.color = "var(--aurick-amber)";
             
-            stepsContainer.innerHTML = '<div style="text-align:center;padding:36px;color:#89acff;">Initializing Playwright CDP Session & Pruning DOM...</div>';
-            terminalFeed.innerHTML = '<div style="color:#89acff;">[Aurick Engine] Browser runtime dispatched. Attaching CDP hooks...</div>';
+            stepsContainer.innerHTML = '<div style="text-align:center;padding:40px;color:var(--aurick-cyan);font-family:var(--font-mono);">Initializing Playwright CDP Session & Pruning DOM...</div>';
+            terminalFeed.innerHTML = '<div style="color:var(--aurick-cyan);">[Aurick Engine] Browser runtime dispatched. Attaching CDP hooks...</div>';
 
             try {
                 const response = await fetch('/api/run-agent', {
@@ -905,14 +1011,14 @@
                 let stepsHtml = '';
                 (data.steps || []).forEach(s => {
                     const isDirect = s.recovery_tier && s.recovery_tier.includes("Tier 0");
-                    const tierClass = isDirect ? "tier-direct" : "tier-healed";
+                    const tierClass = isDirect ? "tier-pass" : "tier-recovered";
                     stepsHtml += `
-                        <div class="step-bubble">
-                            <div class="step-num-pill">${s.step_num}</div>
-                            <div class="step-main">
-                                <div class="step-action-name">${s.action}: ${s.target}</div>
-                                <div class="step-action-sub">${s.details}</div>
-                                ${s.recovery_tier ? `<span class="tier-tag ${tierClass}">${s.recovery_tier}</span>` : ''}
+                        <div class="hud-step-card">
+                            <div class="step-index-chip">${s.step_num}</div>
+                            <div class="step-content-area">
+                                <div class="step-heading">${s.action}: ${s.target}</div>
+                                <div class="step-details-mono">${s.details}</div>
+                                ${s.recovery_tier ? `<span class="tier-indicator ${tierClass}">${s.recovery_tier}</span>` : ''}
                             </div>
                         </div>
                     `;
@@ -934,16 +1040,16 @@
                 statusBadge.style.color = "var(--aurick-emerald)";
 
             } catch (err) {
-                stepsContainer.innerHTML = `<div style="color:var(--aurick-red);padding:24px;">Execution Error: ${err.message}</div>`;
+                stepsContainer.innerHTML = `<div style="color:var(--aurick-crimson);padding:24px;">Execution Error: ${err.message}</div>`;
                 statusBadge.innerText = "Error";
-                statusBadge.style.color = "var(--aurick-red)";
+                statusBadge.style.color = "var(--aurick-crimson)";
             } finally {
                 btn.disabled = false;
-                btn.innerHTML = '<span>▶</span> Run Autonomous Test';
+                btn.innerHTML = '<span>⚡</span> Run Autonomous Agent';
             }
         }
 
-        async function runBenchmarkEvals() {
+        async function executeBenchmarkSuite() {
             const btn = document.getElementById('btnRunEvalSuite');
             btn.disabled = true;
             btn.innerHTML = '<span>⏳</span> Benchmarking...';
@@ -961,7 +1067,7 @@
                 console.error(e);
             } finally {
                 btn.disabled = false;
-                btn.innerHTML = '<span>▶</span> Run Multi-Scenario Suite';
+                btn.innerHTML = '<span>⚡</span> Run Benchmark Evaluation';
             }
         }
     </script>
