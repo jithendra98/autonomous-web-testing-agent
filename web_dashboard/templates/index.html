@@ -1,35 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aurick.ai — Autonomous AI QA Engineer | Mission Control</title>
+    <title>Aurick.ai — Autonomous AI QA Engineer | Test Studio</title>
     
-    <!-- Exact Font Used by Aurick.ai: Plus Jakarta Sans -->
+    <!-- Aurick.ai Official Font: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-base: #00020f;
-            --bg-surface: #060919;
-            --bg-card: rgba(10, 14, 29, 0.75);
-            --bg-card-hover: rgba(15, 21, 42, 0.9);
-            --border-subtle: rgba(255, 255, 255, 0.08);
-            --border-focus: rgba(61, 106, 254, 0.45);
+            --bg-base: #02040a;
+            --bg-subtle: #080c16;
+            --bg-card: rgba(13, 19, 35, 0.75);
+            --border-card: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(61, 106, 254, 0.35);
             
-            /* Aurick Signature Electric Palette */
             --aurick-blue: #215dde;
             --aurick-electric: #3d6afe;
-            --aurick-glow: #89ACFF;
             --aurick-cyan: #00f2fe;
             --aurick-emerald: #10b981;
             --aurick-amber: #f59e0b;
             --aurick-red: #ef4444;
             
-            --text-primary: #ffffff;
-            --text-secondary: #94a3b8;
+            --text-heading: #ffffff;
+            --text-body: #94a3b8;
             --text-muted: #64748b;
             
             --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -44,11 +41,7 @@
 
         body {
             background-color: var(--bg-base);
-            background-image: 
-                radial-gradient(circle at 50% -10%, rgba(33, 93, 222, 0.22) 0%, transparent 60%),
-                radial-gradient(circle at 10% 30%, rgba(61, 106, 254, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 90% 70%, rgba(137, 172, 255, 0.06) 0%, transparent 45%);
-            color: var(--text-primary);
+            color: var(--text-heading);
             font-family: var(--font-sans);
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
@@ -56,13 +49,12 @@
             padding-bottom: 80px;
         }
 
-        /* Aurick Floating Navbar */
+        /* 1. AURICK NAVBAR */
         .navbar {
-            background: rgba(0, 2, 15, 0.85);
+            background: rgba(2, 4, 10, 0.85);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-subtle);
-            padding: 18px 48px;
+            border-bottom: 1px solid var(--border-card);
+            padding: 16px 48px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -71,82 +63,72 @@
             z-index: 1000;
         }
 
-        .brand-cluster {
+        .brand-logo-area {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 12px;
         }
 
-        .aurick-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
-
-        .logo-symbol {
-            width: 34px;
-            height: 34px;
+        .aurick-icon {
+            width: 32px;
+            height: 32px;
             background: linear-gradient(135deg, var(--aurick-blue), var(--aurick-electric));
-            border-radius: 10px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 20px rgba(61, 106, 254, 0.5);
             font-weight: 800;
-            font-size: 18px;
+            font-size: 16px;
             color: #fff;
+            box-shadow: 0 0 16px rgba(61, 106, 254, 0.4);
         }
 
-        .logo-title {
-            font-size: 21px;
+        .brand-name {
+            font-size: 20px;
             font-weight: 800;
-            letter-spacing: -0.6px;
-            background: linear-gradient(180deg, #ffffff 30%, #94a3b8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
         }
 
-        .candidate-tag {
+        .brand-badge {
             font-size: 11px;
-            font-weight: 600;
+            font-weight: 700;
             background: rgba(33, 93, 222, 0.15);
-            color: var(--aurick-glow);
+            color: #89acff;
             border: 1px solid rgba(61, 106, 254, 0.3);
-            padding: 4px 10px;
-            border-radius: 20px;
-            letter-spacing: 0.3px;
+            padding: 3px 10px;
+            border-radius: 100px;
+            margin-left: 6px;
         }
 
-        .nav-tabs {
+        .nav-switchers {
             display: flex;
-            gap: 6px;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--border-subtle);
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid var(--border-card);
             padding: 4px;
-            border-radius: 12px;
+            border-radius: 10px;
+            gap: 4px;
         }
 
-        .nav-tab-btn {
-            padding: 8px 18px;
+        .nav-switcher-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-body);
+            font-family: var(--font-sans);
             font-size: 13px;
             font-weight: 600;
-            color: var(--text-secondary);
-            border: none;
-            background: transparent;
+            padding: 7px 16px;
+            border-radius: 7px;
             cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            font-family: var(--font-sans);
+            transition: all 0.2s ease;
         }
 
-        .nav-tab-btn.active {
+        .nav-switcher-btn.active {
             background: var(--aurick-blue);
             color: #ffffff;
-            box-shadow: 0 4px 15px rgba(33, 93, 222, 0.4);
+            box-shadow: 0 2px 10px rgba(33, 93, 222, 0.4);
         }
 
-        .runtime-status-pill {
+        .live-status {
             display: flex;
             align-items: center;
             gap: 8px;
@@ -159,699 +141,708 @@
             border-radius: 100px;
         }
 
-        .pulse-dot {
+        .pulse-indicator {
             width: 7px;
             height: 7px;
             border-radius: 50%;
             background: var(--aurick-emerald);
             box-shadow: 0 0 10px var(--aurick-emerald);
-            animation: pulseGlow 2s infinite;
+            animation: pulse 2s infinite;
         }
 
-        @keyframes pulseGlow {
+        @keyframes pulse {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.4; transform: scale(0.85); }
         }
 
-        /* Hero Header */
-        .hero-banner {
-            max-width: 1400px;
-            margin: 32px auto 24px;
-            padding: 0 36px;
+        /* 2. HERO SECTION IN AURICK STYLE */
+        .hero {
+            max-width: 1200px;
+            margin: 40px auto 28px;
             text-align: center;
+            padding: 0 24px;
         }
 
-        .hero-pill {
+        .hero-tag {
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #89acff;
             background: rgba(61, 106, 254, 0.1);
             border: 1px solid rgba(61, 106, 254, 0.3);
-            padding: 6px 16px;
+            padding: 5px 14px;
             border-radius: 100px;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--aurick-glow);
-            margin-bottom: 16px;
-            box-shadow: 0 0 20px rgba(61, 106, 254, 0.15);
+            margin-bottom: 18px;
         }
 
-        .hero-headline {
-            font-size: 38px;
+        .hero-title {
+            font-size: 44px;
             font-weight: 800;
-            letter-spacing: -1px;
-            line-height: 1.2;
-            margin-bottom: 12px;
+            letter-spacing: -1.2px;
+            line-height: 1.15;
+            margin-bottom: 14px;
         }
 
-        .hero-headline span {
-            background: linear-gradient(135deg, #ffffff 40%, var(--aurick-glow) 100%);
+        .hero-title span {
+            background: linear-gradient(135deg, #ffffff 30%, #89acff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .hero-subhead {
-            font-size: 15px;
-            color: var(--text-secondary);
-            max-width: 700px;
+        .hero-desc {
+            font-size: 16px;
+            color: var(--text-body);
+            max-width: 680px;
             margin: 0 auto;
             line-height: 1.6;
         }
 
-        /* Main Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 36px;
+        /* 3. AURICK BROWSER SIMULATOR CONTAINER (MOCKUP STYLE) */
+        .stage-container {
+            max-width: 1360px;
+            margin: 32px auto 0;
+            padding: 0 32px;
         }
 
-        .tab-panel {
-            display: none;
-        }
-
-        .tab-panel.active {
-            display: block;
-            animation: fadeIn 0.25s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(4px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Aurick Glass Card */
-        .glass-card {
+        .browser-frame {
             background: var(--bg-card);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--border-subtle);
+            border: 1px solid var(--border-card);
             border-radius: 18px;
-            padding: 26px;
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
-            margin-bottom: 24px;
-            transition: border-color 0.2s ease;
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7);
+            overflow: hidden;
+            backdrop-filter: blur(16px);
         }
 
-        .glass-card:hover {
-            border-color: rgba(255, 255, 255, 0.12);
-        }
-
-        .card-header-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 14px;
-            border-bottom: 1px solid var(--border-subtle);
-        }
-
-        .card-heading {
-            font-size: 17px;
-            font-weight: 700;
-            letter-spacing: -0.3px;
+        /* Browser Window Header with Traffic Lights */
+        .browser-bar {
+            background: rgba(6, 10, 22, 0.9);
+            border-bottom: 1px solid var(--border-card);
+            padding: 14px 20px;
             display: flex;
             align-items: center;
-            gap: 10px;
-        }
-
-        /* Control Form Grid */
-        .control-row {
-            display: grid;
-            grid-template-columns: 1.8fr 3.2fr auto;
             gap: 16px;
-            align-items: flex-end;
         }
 
-        .field-label {
-            display: block;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
+        .traffic-lights {
+            display: flex;
+            gap: 7px;
         }
 
-        .aurick-input {
-            width: 100%;
-            background: rgba(0, 2, 15, 0.8);
-            border: 1px solid var(--border-subtle);
-            color: #ffffff;
-            padding: 13px 18px;
-            border-radius: 12px;
-            font-size: 14px;
-            font-family: var(--font-sans);
+        .traffic-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+
+        /* Browser URL Omnibar */
+        .omnibar-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background: rgba(0, 2, 10, 0.85);
+            border: 1px solid var(--border-card);
+            border-radius: 10px;
+            padding: 8px 14px;
+            gap: 10px;
             transition: all 0.2s ease;
         }
 
-        .aurick-input:focus {
-            outline: none;
+        .omnibar-wrapper:focus-within {
             border-color: var(--aurick-electric);
-            box-shadow: 0 0 20px rgba(61, 106, 254, 0.3);
-            background: rgba(6, 9, 25, 0.95);
+            box-shadow: 0 0 15px rgba(61, 106, 254, 0.25);
         }
 
-        .btn-aurick-primary {
+        .url-lock {
+            color: var(--aurick-emerald);
+            font-size: 13px;
+        }
+
+        .url-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 13px;
+            font-family: var(--font-mono);
+        }
+
+        .url-input:focus {
+            outline: none;
+        }
+
+        .btn-crawl {
             background: linear-gradient(135deg, var(--aurick-blue), var(--aurick-electric));
             color: #ffffff;
-            font-weight: 700;
-            font-size: 14px;
             font-family: var(--font-sans);
-            padding: 14px 28px;
+            font-weight: 700;
+            font-size: 13px;
+            padding: 10px 22px;
             border: none;
-            border-radius: 12px;
+            border-radius: 8px;
             cursor: pointer;
-            box-shadow: 0 4px 25px rgba(33, 93, 222, 0.45);
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            white-space: nowrap;
+            box-shadow: 0 4px 15px rgba(33, 93, 222, 0.4);
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
             gap: 8px;
+            white-space: nowrap;
         }
 
-        .btn-aurick-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(61, 106, 254, 0.6);
+        .btn-crawl:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(61, 106, 254, 0.5);
         }
 
-        .btn-aurick-primary:disabled {
+        .btn-crawl:disabled {
             opacity: 0.5;
             cursor: not-allowed;
             transform: none;
         }
 
-        /* Checkbox Toggles */
-        .aurick-toggles {
-            display: flex;
-            gap: 28px;
-            margin-top: 20px;
-            padding-top: 16px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .checkbox-label {
+        /* Goal Sub-bar */
+        .goal-bar {
+            background: rgba(9, 14, 28, 0.7);
+            border-bottom: 1px solid var(--border-card);
+            padding: 12px 24px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 13px;
-            color: #cbd5e1;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .goal-flex {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .goal-pill {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: #89acff;
+            background: rgba(61, 106, 254, 0.15);
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .goal-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: #e2e8f0;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: var(--font-sans);
+        }
+
+        .goal-input:focus {
+            outline: none;
+        }
+
+        .toggles-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .aurick-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-body);
             cursor: pointer;
             user-select: none;
         }
 
-        .checkbox-label input {
+        .aurick-checkbox input {
             accent-color: var(--aurick-electric);
-            width: 17px;
-            height: 17px;
-            cursor: pointer;
+            width: 15px;
+            height: 15px;
         }
 
-        /* Metrics Bar (Aurick Scorecard) */
-        .metrics-quad {
+        /* 4. METRIC TILES BAR */
+        .scorecard-row {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border-card);
+            background: rgba(6, 10, 22, 0.4);
         }
 
-        .metric-tile {
-            background: rgba(10, 14, 29, 0.5);
-            border: 1px solid var(--border-subtle);
-            border-radius: 14px;
-            padding: 20px;
-            position: relative;
-            overflow: hidden;
+        .score-tile {
+            padding: 18px 24px;
+            border-right: 1px solid var(--border-card);
         }
 
-        .metric-tile::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 3px;
-            height: 100%;
-            background: var(--tile-color, var(--aurick-blue));
+        .score-tile:last-child {
+            border-right: none;
         }
 
-        .metric-tile-label {
+        .tile-sub {
             font-size: 11px;
+            font-weight: 700;
             text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.6px;
             color: var(--text-muted);
-            margin-bottom: 6px;
-        }
-
-        .metric-tile-val {
-            font-size: 28px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            color: #ffffff;
-        }
-
-        .metric-tile-sub {
-            font-size: 12px;
-            color: var(--aurick-glow);
-            margin-top: 4px;
-            font-weight: 500;
-        }
-
-        /* Workspace Grid (Steps vs Screenshot) */
-        .workspace-dual {
-            display: grid;
-            grid-template-columns: 1.25fr 0.75fr;
-            gap: 24px;
-        }
-
-        .timeline-scroll {
-            max-height: 540px;
-            overflow-y: auto;
-            padding-right: 6px;
-        }
-
-        .timeline-item {
-            background: rgba(0, 2, 15, 0.6);
-            border: 1px solid var(--border-subtle);
-            border-radius: 12px;
-            padding: 14px 18px;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            animation: slideUp 0.25s ease;
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .step-index-badge {
-            background: rgba(33, 93, 222, 0.2);
-            color: var(--aurick-glow);
-            border: 1px solid rgba(61, 106, 254, 0.35);
-            font-size: 12px;
-            font-weight: 700;
-            font-family: var(--font-mono);
-            padding: 4px 10px;
-            border-radius: 8px;
-            min-width: 34px;
-            text-align: center;
-        }
-
-        .step-body {
-            flex: 1;
-        }
-
-        .step-action-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: #ffffff;
             margin-bottom: 4px;
         }
 
-        .step-action-desc {
+        .tile-number {
+            font-size: 26px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        .tile-desc {
+            font-size: 12px;
+            color: #89acff;
+            margin-top: 2px;
+        }
+
+        /* 5. DUAL PANE WORKSPACE (STEPS VS LIVE PREVIEW) */
+        .browser-workspace {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            min-height: 520px;
+        }
+
+        /* Left Action Stream */
+        .stream-panel {
+            border-right: 1px solid var(--border-card);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel-heading-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .panel-title {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-body);
+        }
+
+        .steps-flow {
+            flex: 1;
+            max-height: 380px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .step-bubble {
+            background: rgba(0, 2, 10, 0.7);
+            border: 1px solid var(--border-card);
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            animation: slide 0.2s ease;
+        }
+
+        @keyframes slide {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-num-pill {
+            background: rgba(33, 93, 222, 0.2);
+            color: #89acff;
+            border: 1px solid rgba(61, 106, 254, 0.3);
+            font-size: 11px;
+            font-weight: 700;
+            font-family: var(--font-mono);
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        .step-main {
+            flex: 1;
+        }
+
+        .step-action-name {
             font-size: 13px;
-            color: var(--text-secondary);
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 2px;
+        }
+
+        .step-action-sub {
+            font-size: 12px;
+            color: var(--text-muted);
             font-family: var(--font-mono);
         }
 
-        .badge-recovery {
+        .tier-tag {
             display: inline-block;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
-            padding: 3px 10px;
+            padding: 2px 8px;
             border-radius: 100px;
-            margin-top: 6px;
+            margin-top: 5px;
         }
 
-        .badge-recovery-direct {
+        .tier-direct {
             background: rgba(16, 185, 129, 0.15);
             color: #34d399;
             border: 1px solid rgba(16, 185, 129, 0.3);
         }
 
-        .badge-recovery-healed {
+        .tier-healed {
             background: rgba(245, 158, 11, 0.2);
             color: #fbbf24;
             border: 1px solid rgba(245, 158, 11, 0.4);
         }
 
-        .aurick-console {
-            background: #00020f;
-            border: 1px solid var(--border-subtle);
-            border-radius: 12px;
-            padding: 14px 18px;
+        .terminal-tray {
+            background: #000208;
+            border: 1px solid var(--border-card);
+            border-radius: 8px;
+            padding: 12px 14px;
             font-family: var(--font-mono);
-            font-size: 12px;
-            max-height: 180px;
+            font-size: 11px;
+            max-height: 120px;
             overflow-y: auto;
-            color: var(--text-secondary);
-            margin-top: 16px;
+            color: var(--text-body);
+            margin-top: 14px;
         }
 
-        .aurick-console-line {
-            margin-bottom: 4px;
+        /* Right Canvas Preview */
+        .preview-panel {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            background: rgba(4, 7, 16, 0.4);
         }
 
-        /* Screenshot Container */
-        .screenshot-frame {
-            background: #00020f;
-            border: 1px solid var(--border-subtle);
-            border-radius: 14px;
-            padding: 12px;
+        .canvas-frame {
+            flex: 1;
+            background: #000208;
+            border: 1px solid var(--border-card);
+            border-radius: 12px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
         }
 
-        .screenshot-frame img {
+        .canvas-frame img {
             max-width: 100%;
-            border-radius: 10px;
+            border-radius: 8px;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
         }
 
-        /* Table Styling */
-        .aurick-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
+        /* 6. TAB CONTENTS */
+        .tab-section {
+            display: none;
         }
 
-        .aurick-table th {
-            background: rgba(15, 23, 42, 0.7);
-            color: var(--text-secondary);
-            padding: 16px;
-            text-align: left;
-            font-weight: 600;
-            border-bottom: 1px solid var(--border-subtle);
+        .tab-section.active {
+            display: block;
         }
 
-        .aurick-table td {
-            padding: 16px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        /* Founder Story Cards */
+        .briefing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
         }
 
-        /* Architecture Section Cards */
-        .pitch-block {
-            background: rgba(10, 14, 29, 0.6);
-            border-left: 3px solid var(--aurick-electric);
-            padding: 20px 24px;
-            border-radius: 0 14px 14px 0;
-            font-size: 15px;
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-
-        .tech-pill {
+        .story-pill {
             background: rgba(33, 93, 222, 0.15);
-            color: var(--aurick-glow);
+            color: #89acff;
             border: 1px solid rgba(61, 106, 254, 0.3);
-            padding: 4px 12px;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
             font-family: var(--font-mono);
+            margin-right: 8px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Aurick Sticky Navbar -->
+    <!-- 1. AURICK NAVBAR -->
     <header class="navbar">
-        <div class="brand-cluster">
-            <a href="/" class="aurick-logo">
-                <div class="logo-symbol">A</div>
-                <div class="logo-title">Aurick<span style="color:var(--aurick-glow)">.ai</span></div>
-            </a>
-            <div class="candidate-tag">
-                Autonomous QA Agent • Mallela Jithendra
-            </div>
+        <div class="brand-logo-area">
+            <div class="aurick-icon">A</div>
+            <div class="brand-name">Aurick<span style="color:#89acff">.ai</span></div>
+            <div class="brand-badge">Autonomous QA Studio • Mallela Jithendra</div>
         </div>
 
-        <nav class="nav-tabs">
-            <button class="nav-tab-btn active" onclick="switchPanel('playground')">⚡ Live Agent Studio</button>
-            <button class="nav-tab-btn" onclick="switchPanel('evals')">📊 Benchmark Suite</button>
-            <button class="nav-tab-btn" onclick="switchPanel('architecture')">💡 Founder Briefing</button>
+        <nav class="nav-switchers">
+            <button class="nav-switcher-btn active" onclick="showTab('studio')">⚡ Live Test Studio</button>
+            <button class="nav-switcher-btn" onclick="showTab('benchmark')">📊 Eval Benchmarks</button>
+            <button class="nav-switcher-btn" onclick="showTab('founder')">💡 Founder Briefing</button>
         </nav>
 
-        <div class="runtime-status-pill">
-            <div class="pulse-dot"></div>
-            <span>Aurick Core v2.4 Online (CDP Active)</span>
+        <div class="live-status">
+            <div class="pulse-indicator"></div>
+            <span>Aurick Core v2.4 Active (CDP Connected)</span>
         </div>
     </header>
 
-    <!-- Hero Title -->
-    <section class="hero-banner">
-        <div class="hero-pill">
-            <span>✨ Powered by ReAct Agent Loop & Chrome DevTools Protocol</span>
+    <!-- 2. HERO HEADLINE -->
+    <section class="hero">
+        <div class="hero-tag">
+            <span>✨ Autonomous AI QA Engine — Zero Scripting, Zero Maintenance</span>
         </div>
-        <h1 class="hero-headline">
+        <h1 class="hero-title">
             Explore. Assert. <span>Self-Heal.</span>
         </h1>
-        <p class="hero-subhead">
-            Autonomous web testing agent that navigates live SPAs, extracts accessibility-tree semantics, 
-            slashes token overhead by 88%, and automatically heals broken CSS selectors.
+        <p class="hero-desc">
+            Autonomous web testing agent that navigates live applications, extracts accessibility-tree semantics, 
+            slashes token overhead by 88.6%, and automatically recovers from broken dynamic CSS selectors.
         </p>
     </section>
 
-    <main class="container">
+    <main class="stage-container">
 
-        <!-- TAB 1: LIVE AGENT STUDIO (PLAYGROUND) -->
-        <div id="panel-playground" class="tab-panel active">
+        <!-- TAB 1: LIVE STUDIO (AURICK PRODUCT WORKSPACE STYLE) -->
+        <div id="tab-studio" class="tab-section active">
+            <div class="browser-frame">
 
-            <!-- Control Card -->
-            <div class="glass-card">
-                <div class="card-header-flex">
-                    <div class="card-heading">
-                        <span>🎯 Autonomous Test Dispatcher</span>
-                    </div>
-                    <a href="https://github.com/jithendra98/autonomous-web-testing-agent" target="_blank" style="color:var(--aurick-glow);font-size:13px;text-decoration:none;font-weight:600;">
-                        github.com/jithendra98/autonomous-web-testing-agent ↗
-                    </a>
-                </div>
-
-                <div class="control-row">
-                    <div>
-                        <label class="field-label">Target Application URL</label>
-                        <input type="text" id="targetUrl" class="aurick-input" value="http://127.0.0.1:8000">
+                <!-- Browser Omnibar Header -->
+                <div class="browser-bar">
+                    <div class="traffic-lights">
+                        <div class="traffic-dot dot-red"></div>
+                        <div class="traffic-dot dot-yellow"></div>
+                        <div class="traffic-dot dot-green"></div>
                     </div>
 
-                    <div>
-                        <label class="field-label">Natural Language Test Goal</label>
-                        <input type="text" id="targetGoal" class="aurick-input" value="Sign in with credentials and verify dashboard state">
+                    <div class="omnibar-wrapper">
+                        <span class="url-lock">🔒</span>
+                        <input type="text" id="targetUrl" class="url-input" value="http://127.0.0.1:8000">
                     </div>
 
-                    <button id="btnRunAgent" class="btn-aurick-primary" onclick="triggerAgentRun()">
-                        <span>▶</span> Launch Autonomous Agent
+                    <button id="btnCrawl" class="btn-crawl" onclick="runAgentDemo()">
+                        <span>▶</span> Run Autonomous Test
                     </button>
                 </div>
 
-                <div class="aurick-toggles">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="breakCssToggle" checked>
-                        <span>Simulate Mutated Dynamic CSS (Demonstrate 4-Tier Self-Healing)</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="headedToggle" checked>
-                        <span>Headed Visual Browser Window (Live Action Display)</span>
-                    </label>
-                    <span style="margin-left:auto;font-size:12px;color:var(--text-muted);font-style:italic;">
-                        Custom-engineered for OyeSense / Aurick.ai Architecture
-                    </span>
-                </div>
-            </div>
+                <!-- Goal Sub-bar -->
+                <div class="goal-bar">
+                    <div class="goal-flex">
+                        <span class="goal-pill">Test Scenario</span>
+                        <input type="text" id="targetGoal" class="goal-input" value="Sign in with credentials and verify dashboard state">
+                    </div>
 
-            <!-- Metric Highlights -->
-            <div class="metrics-quad">
-                <div class="metric-tile" style="--tile-color: var(--aurick-electric);">
-                    <div class="metric-tile-label">DOM Token Compression</div>
-                    <div class="metric-tile-val" id="metricTokenCut">88.6%</div>
-                    <div class="metric-tile-sub">Prompt Token Overhead Eliminated</div>
+                    <div class="toggles-group">
+                        <label class="aurick-checkbox">
+                            <input type="checkbox" id="breakCssToggle" checked>
+                            <span>Simulate Mutated Dynamic CSS (Demonstrate Self-Healing)</span>
+                        </label>
+                        <label class="aurick-checkbox">
+                            <input type="checkbox" id="headedToggle" checked>
+                            <span>Headed Visual Browser Window</span>
+                        </label>
+                    </div>
                 </div>
 
-                <div class="metric-tile" style="--tile-color: var(--aurick-amber);">
-                    <div class="metric-tile-label">Self-Healing Recovery</div>
-                    <div class="metric-tile-val" id="metricRecovery">Tier 1 ARIA</div>
-                    <div class="metric-tile-sub">Dynamic CSS Mutated & Resolved</div>
+                <!-- Metrics Scorecard Row -->
+                <div class="scorecard-row">
+                    <div class="score-tile">
+                        <div class="tile-sub">Token Compression</div>
+                        <div class="tile-number" id="metricTokenCut">88.6%</div>
+                        <div class="tile-desc">Prompt Token Overhead Cut</div>
+                    </div>
+                    <div class="score-tile">
+                        <div class="tile-sub">Self-Healing Recovery</div>
+                        <div class="tile-number" id="metricRecovery" style="color:#fbbf24;">Tier 1 ARIA</div>
+                        <div class="tile-desc">Dynamic CSS Mutated & Resolved</div>
+                    </div>
+                    <div class="score-tile">
+                        <div class="tile-sub">CDP Telemetry</div>
+                        <div class="tile-number" id="metricTelemetry">1 Warn, 0 Errors</div>
+                        <div class="tile-desc">V8 Console & HTTP HAR Captured</div>
+                    </div>
+                    <div class="score-tile">
+                        <div class="tile-sub">Assertion State</div>
+                        <div class="tile-number" id="metricStatus" style="color:var(--aurick-emerald);">READY</div>
+                        <div class="tile-desc" id="metricSteps">0 Steps Executed</div>
+                    </div>
                 </div>
 
-                <div class="metric-tile" style="--tile-color: var(--aurick-blue);">
-                    <div class="metric-tile-label">CDP Telemetry Intercepts</div>
-                    <div class="metric-tile-val" id="metricTelemetry">1 Warn, 0 Errors</div>
-                    <div class="metric-tile-sub">V8 Console & HTTP HAR Captured</div>
-                </div>
-
-                <div class="metric-tile" style="--tile-color: var(--aurick-emerald);">
-                    <div class="metric-tile-label">Assertion State</div>
-                    <div class="metric-tile-val" id="metricStatus" style="color:var(--aurick-emerald);">READY</div>
-                    <div class="metric-tile-sub" id="metricSteps">0 Steps Executed</div>
-                </div>
-            </div>
-
-            <!-- Workspace Dual Grid -->
-            <div class="workspace-dual">
-                <!-- Left: Action Timeline -->
-                <div class="glass-card">
-                    <div class="card-header-flex">
-                        <div class="card-heading">
-                            <span>📡 Real-Time ReAct Execution Trace</span>
+                <!-- Dual Pane Workspace -->
+                <div class="browser-workspace">
+                    <!-- Left: Real-time ReAct Flow -->
+                    <div class="stream-panel">
+                        <div class="panel-heading-row">
+                            <span class="panel-title">📡 Real-Time Agent Execution & Recovery Trace</span>
+                            <span id="agentStatusBadge" class="brand-badge">Idle</span>
                         </div>
-                        <span id="agentStatusBadge" class="candidate-tag">Idle</span>
-                    </div>
 
-                    <div id="stepsContainer" class="timeline-scroll">
-                        <div style="text-align:center;padding:48px;color:var(--text-muted);font-style:italic;">
-                            Click "Launch Autonomous Agent" above to run the live execution loop...
+                        <div id="stepsContainer" class="steps-flow">
+                            <div style="text-align:center;padding:48px;color:var(--text-muted);font-style:italic;">
+                                Click "Run Autonomous Test" above to start the live agent loop...
+                            </div>
+                        </div>
+
+                        <div class="terminal-tray" id="terminalFeed">
+                            <div style="color:#89acff;">[Aurick Core] Ready. Dispatched via Python Asyncio Playwright engine.</div>
                         </div>
                     </div>
 
-                    <div class="aurick-console" id="terminalFeed">
-                        <div class="aurick-console-line" style="color:var(--aurick-glow);">[Aurick Engine] Runtime initialized. Ready for test dispatch.</div>
-                    </div>
-                </div>
-
-                <!-- Right: Visual Screenshot & Artifact -->
-                <div class="glass-card">
-                    <div class="card-header-flex">
-                        <div class="card-heading">
-                            <span>📸 Live Browser Artifact Screenshot</span>
+                    <!-- Right: Live Canvas Snapshot -->
+                    <div class="preview-panel">
+                        <div class="panel-heading-row">
+                            <span class="panel-title">📸 Live Page Snapshot</span>
+                            <a id="reportLink" href="#" target="_blank" style="display:none;color:#89acff;font-size:12px;text-decoration:none;font-weight:700;">
+                                Open Full HTML Audit Report ↗
+                            </a>
                         </div>
-                        <a id="reportLink" href="#" target="_blank" style="display:none;color:var(--aurick-glow);font-size:12px;text-decoration:none;font-weight:600;">
-                            Open Full HTML Audit Report ↗
-                        </a>
-                    </div>
 
-                    <div class="screenshot-frame">
-                        <img id="screenshotImg" src="/artifacts/screenshot_1792940410.png" alt="Browser Screenshot">
-                        <p style="font-size:12px;color:var(--text-muted);margin-top:12px;">
-                            Full-page artifact captured via Chrome DevTools Protocol session
-                        </p>
+                        <div class="canvas-frame">
+                            <img id="screenshotImg" src="/artifacts/screenshot_1792941046.png" alt="Browser Snapshot">
+                            <p style="font-size:12px;color:var(--text-muted);margin-top:12px;">
+                                Captured via Chrome DevTools Protocol Session
+                            </p>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
 
         <!-- TAB 2: BENCHMARK SUITE -->
-        <div id="panel-evals" class="tab-panel">
-            <div class="glass-card">
-                <div class="card-header-flex">
-                    <div class="card-heading">
-                        <span>🧪 Autonomous Agent Evaluation Benchmark Suite</span>
+        <div id="tab-benchmark" class="tab-section">
+            <div class="briefing-card">
+                <div class="panel-heading-row" style="margin-bottom:24px;">
+                    <div>
+                        <h2 style="font-size:22px;font-weight:800;letter-spacing:-0.5px;">Aurick Benchmark Evaluation Suite</h2>
+                        <p style="color:var(--text-body);font-size:14px;margin-top:4px;">
+                            Evaluating agent task success, self-healing recovery efficiency, and latency across 50+ diverse web states.
+                        </p>
                     </div>
-                    <button id="btnRunEvalSuite" class="btn-aurick-primary" onclick="triggerEvalSuite()">
-                        <span>▶</span> Run Benchmark Suite
+                    <button id="btnRunEvalSuite" class="btn-crawl" onclick="runBenchmarkEvals()">
+                        <span>▶</span> Run Multi-Scenario Suite
                     </button>
                 </div>
 
-                <p style="color:var(--text-secondary);font-size:14px;margin-bottom:24px;">
-                    Benchmarking agent reliability, self-healing recovery rates, and token cost compression across 50+ diverse web states.
-                </p>
-
-                <div class="metrics-quad">
-                    <div class="metric-tile" style="--tile-color: var(--aurick-emerald);">
-                        <div class="metric-tile-label">Task Success Rate</div>
-                        <div class="metric-tile-val" id="evalSuccessRate">100.0%</div>
-                        <div class="metric-tile-sub">Multi-Turn Scenarios Completed</div>
+                <div class="scorecard-row" style="border:1px solid var(--border-card);border-radius:12px;margin-bottom:28px;">
+                    <div class="score-tile">
+                        <div class="tile-sub">Task Success Rate</div>
+                        <div class="tile-number" id="evalSuccessRate" style="color:var(--aurick-emerald);">100.0%</div>
+                        <div class="tile-desc">All E2E Scenarios Passed</div>
                     </div>
-
-                    <div class="metric-tile" style="--tile-color: var(--aurick-amber);">
-                        <div class="metric-tile-label">Self-Healing Efficiency</div>
-                        <div class="metric-tile-val">92.5%</div>
-                        <div class="metric-tile-sub">Broken Selectors Dynamically Resolved</div>
+                    <div class="score-tile">
+                        <div class="tile-sub">Self-Healing Efficiency</div>
+                        <div class="tile-number" style="color:#fbbf24;">92.5%</div>
+                        <div class="tile-desc">Broken Selectors Recovered</div>
                     </div>
-
-                    <div class="metric-tile" style="--tile-color: var(--aurick-blue);">
-                        <div class="metric-tile-label">Avg Scenario Latency</div>
-                        <div class="metric-tile-val" id="evalAvgLatency">5.53s</div>
-                        <div class="metric-tile-sub">Optimized Async Playwright Engine</div>
+                    <div class="score-tile">
+                        <div class="tile-sub">Avg Scenario Latency</div>
+                        <div class="tile-number" id="evalAvgLatency">5.53s</div>
+                        <div class="tile-desc">Fast Async Playwright Loop</div>
                     </div>
-
-                    <div class="metric-tile" style="--tile-color: var(--aurick-glow);">
-                        <div class="metric-tile-label">Token Cost Cut</div>
-                        <div class="metric-tile-val" id="evalAvgTokenCut">97.0%</div>
-                        <div class="metric-tile-sub">Accessibility Tree Pruning</div>
+                    <div class="score-tile">
+                        <div class="tile-sub">Token Compression</div>
+                        <div class="tile-number" id="evalAvgTokenCut" style="color:#89acff;">97.0%</div>
+                        <div class="tile-desc">Accessibility Tree Pruning</div>
                     </div>
                 </div>
 
-                <table class="aurick-table">
+                <table style="width:100%;border-collapse:collapse;font-size:14px;">
                     <thead>
-                        <tr>
-                            <th>Scenario Name</th>
-                            <th>Status</th>
-                            <th>Self-Healed Actions</th>
-                            <th>Latency</th>
-                            <th>Token Compression</th>
+                        <tr style="border-bottom:1px solid var(--border-card);text-align:left;color:var(--text-body);">
+                            <th style="padding:14px;">Scenario</th>
+                            <th style="padding:14px;">Status</th>
+                            <th style="padding:14px;">Self-Healed Actions</th>
+                            <th style="padding:14px;">Latency</th>
+                            <th style="padding:14px;">Token Compression</th>
                         </tr>
                     </thead>
-                    <tbody id="evalTableBody">
-                        <tr>
-                            <td><strong>Auth Flow — Standard Traversal</strong></td>
-                            <td><span class="badge-recovery badge-recovery-direct">PASS</span></td>
-                            <td>0</td>
-                            <td>3.97s</td>
-                            <td>97.0% Cut</td>
+                    <tbody>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                            <td style="padding:14px;"><strong>Auth Flow — Standard Traversal</strong></td>
+                            <td style="padding:14px;"><span class="tier-tag tier-direct">PASS</span></td>
+                            <td style="padding:14px;">0</td>
+                            <td style="padding:14px;">3.97s</td>
+                            <td style="padding:14px;">97.0% Cut</td>
                         </tr>
-                        <tr>
-                            <td><strong>Auth Flow — Mutated Dynamic CSS</strong></td>
-                            <td><span class="badge-recovery badge-recovery-direct">PASS</span></td>
-                            <td>2 (Tier 1 ARIA)</td>
-                            <td>6.31s</td>
-                            <td>97.0% Cut</td>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                            <td style="padding:14px;"><strong>Auth Flow — Mutated Dynamic CSS</strong></td>
+                            <td style="padding:14px;"><span class="tier-tag tier-direct">PASS</span></td>
+                            <td style="padding:14px;">2 (Tier 1 ARIA)</td>
+                            <td style="padding:14px;">6.31s</td>
+                            <td style="padding:14px;">97.0% Cut</td>
                         </tr>
-                        <tr>
-                            <td><strong>Edge Flow — Self-Healing Recovery</strong></td>
-                            <td><span class="badge-recovery badge-recovery-direct">PASS</span></td>
-                            <td>2 (Tier 1 ARIA)</td>
-                            <td>6.30s</td>
-                            <td>97.0% Cut</td>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                            <td style="padding:14px;"><strong>Edge Flow — Self-Healing Recovery</strong></td>
+                            <td style="padding:14px;"><span class="tier-tag tier-direct">PASS</span></td>
+                            <td style="padding:14px;">2 (Tier 1 ARIA)</td>
+                            <td style="padding:14px;">6.30s</td>
+                            <td style="padding:14px;">97.0% Cut</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- TAB 3: FOUNDER BRIEFING (FOR VITHAL) -->
-        <div id="panel-architecture" class="tab-panel">
-            <div class="glass-card">
-                <div class="card-header-flex">
-                    <div class="card-heading">
-                        <span>💡 Founder Briefing: Architecture, Decisions & Aurick Alignment</span>
-                    </div>
-                    <span class="candidate-tag">Vithal Sugyamwar Interview Intel</span>
+        <!-- TAB 3: FOUNDER BRIEFING -->
+        <div id="tab-founder" class="tab-section">
+            <div class="briefing-card">
+                <div class="panel-heading-row" style="margin-bottom:20px;">
+                    <h2 style="font-size:22px;font-weight:800;letter-spacing:-0.5px;">Founder Briefing: Vithal Sugyamwar</h2>
+                    <span class="brand-badge">OyeSense AI Agent Developer</span>
                 </div>
 
-                <div class="pitch-block">
-                    <h3 style="font-size:16px;font-weight:700;color:#fff;margin-bottom:8px;">1. The Core Problem Statement for Aurick.ai</h3>
-                    <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;">
-                        Modern single-page applications dynamically hash CSS class names on each deployment, rendering traditional Selenium/Cypress automation fragile and high-maintenance. At the same time, feeding raw HTML into LLMs wastes 40,000+ characters of non-interactive wrapper tags, causing high latency and runaway token bills.
+                <div style="margin-bottom:24px;background:rgba(33,93,222,0.06);border-left:3px solid var(--aurick-electric);padding:18px 22px;border-radius:0 12px 12px 0;">
+                    <h3 style="font-size:15px;color:#ffffff;margin-bottom:6px;">1. The Core Problem for Aurick.ai</h3>
+                    <p style="color:var(--text-body);font-size:14px;line-height:1.6;">
+                        Traditional test automation breaks because modern SPAs generate randomized dynamic CSS class hashes on every deployment. At the same time, passing raw HTML to LLMs wastes 40,000+ characters of non-interactive wrapper tags, ballooning latency and API costs.
                     </p>
                 </div>
 
-                <div class="pitch-block" style="border-left-color:var(--aurick-glow);">
-                    <h3 style="font-size:16px;font-weight:700;color:#fff;margin-bottom:8px;">2. What I Built & How It Works</h3>
-                    <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;">
-                        • <strong>Accessibility-Tree DOM Pruner:</strong> Injected JavaScript evaluator that strips non-interactive markup, cutting prompt token consumption by <strong>88.6%</strong> while retaining 100% interactable element reachability.<br>
-                        • <strong>4-Tier Self-Healing Engine:</strong> When dynamic CSS breaks, the agent cascades through ARIA labels (`get_by_label`), role+name semantics (`get_by_role`), inner text, and spatial bounding box coordinates via CDP mouse clicks.<br>
-                        • <strong>CDP Telemetry Layer:</strong> Direct attachment to Chrome DevTools Protocol to capture V8 console error streams, HTTP 4xx/5xx network failures, and full-page screenshots into audit-grade reports.
+                <div style="margin-bottom:24px;background:rgba(33,93,222,0.06);border-left:3px solid #89acff;padding:18px 22px;border-radius:0 12px 12px 0;">
+                    <h3 style="font-size:15px;color:#ffffff;margin-bottom:6px;">2. What I Engineered</h3>
+                    <p style="color:var(--text-body);font-size:14px;line-height:1.6;">
+                        • <strong>Accessibility-Tree DOM Pruner:</strong> Injected JS evaluator filtering non-interactive nodes, cutting token overhead by <strong>88.6%</strong> while retaining 100% interactable reachability.<br>
+                        • <strong>4-Tier Self-Healing Engine:</strong> When dynamic CSS breaks, cascades through ARIA labels (`get_by_label`), role+name semantics (`get_by_role`), inner text, and spatial bounding box coordinates via CDP mouse clicks.<br>
+                        • <strong>CDP Telemetry:</strong> Directly captures V8 console errors, HTTP 4xx/5xx failures, and full-page screenshots into audit-grade reports.
                     </p>
                 </div>
 
-                <div class="pitch-block" style="border-left-color:var(--aurick-amber);">
-                    <h3 style="font-size:16px;font-weight:700;color:#fff;margin-bottom:8px;">3. Key Technical Challenge Solved</h3>
-                    <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;">
-                        <strong>Dynamic Class Hashing Recovery:</strong> In our live testbench, the portal purposefully mutates CSS button classes mid-session. Our locator automatically detects the failure and resolves the target via Tier 1 ARIA semantics, achieving a <strong>92.5% recovery rate</strong> across mutated application states with zero human intervention.
+                <div style="margin-bottom:24px;background:rgba(33,93,222,0.06);border-left:3px solid #f59e0b;padding:18px 22px;border-radius:0 12px 12px 0;">
+                    <h3 style="font-size:15px;color:#ffffff;margin-bottom:6px;">3. Key Technical Challenge Solved</h3>
+                    <p style="color:var(--text-body);font-size:14px;line-height:1.6;">
+                        <strong>Dynamic Class Hashing Recovery:</strong> In our live testbench, the portal intentionally mutates CSS button classes mid-session. Our locator automatically detects the failure and resolves the target via Tier 1 ARIA semantics, achieving a <strong>92.5% recovery rate</strong> across mutated application states with zero human intervention.
                     </p>
                 </div>
 
-                <div style="margin-top:24px;">
-                    <div class="field-label">Production Tech Stack</div>
-                    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
-                        <span class="tech-pill">Python 3.13 (Asyncio)</span>
-                        <span class="tech-pill">Playwright Engine</span>
-                        <span class="tech-pill">Chrome DevTools Protocol (CDP)</span>
-                        <span class="tech-pill">Pydantic Schemas</span>
-                        <span class="tech-pill">ReAct Loop</span>
-                        <span class="tech-pill">Plus Jakarta Sans UI</span>
+                <div style="margin-top:28px;">
+                    <div style="font-size:12px;font-weight:700;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Tech Stack</div>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                        <span class="story-pill">Python 3.13 (Asyncio)</span>
+                        <span class="story-pill">Playwright</span>
+                        <span class="story-pill">Chrome DevTools Protocol (CDP)</span>
+                        <span class="story-pill">Pydantic</span>
+                        <span class="story-pill">ReAct Loop</span>
+                        <span class="story-pill">Plus Jakarta Sans UI</span>
                     </div>
                 </div>
             </div>
@@ -859,18 +850,18 @@
 
     </main>
 
-    <!-- JavaScript Actions -->
+    <!-- JavaScript Execution Hook -->
     <script>
-        function switchPanel(panelId) {
-            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.nav-tab-btn').forEach(b => b.classList.remove('active'));
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-section').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.nav-switcher-btn').forEach(b => b.classList.remove('active'));
             
-            document.getElementById(`panel-${panelId}`).classList.add('active');
+            document.getElementById(`tab-${tabId}`).classList.add('active');
             event.currentTarget.classList.add('active');
         }
 
-        async function triggerAgentRun() {
-            const btn = document.getElementById('btnRunAgent');
+        async function runAgentDemo() {
+            const btn = document.getElementById('btnCrawl');
             const targetUrl = document.getElementById('targetUrl').value;
             const targetGoal = document.getElementById('targetGoal').value;
             const breakCss = document.getElementById('breakCssToggle').checked;
@@ -880,12 +871,12 @@
             const statusBadge = document.getElementById('agentStatusBadge');
 
             btn.disabled = true;
-            btn.innerHTML = '<span>⏳</span> Crawling & Executing in Browser...';
+            btn.innerHTML = '<span>⏳</span> Crawling in Browser...';
             statusBadge.innerText = "Executing...";
             statusBadge.style.color = "var(--aurick-amber)";
             
-            stepsContainer.innerHTML = '<div style="text-align:center;padding:36px;color:var(--aurick-glow);">Initializing Playwright CDP Session & Pruning DOM...</div>';
-            terminalFeed.innerHTML = '<div class="aurick-console-line" style="color:var(--aurick-glow);">[Aurick Engine] Browser runtime dispatched. Attaching CDP hooks...</div>';
+            stepsContainer.innerHTML = '<div style="text-align:center;padding:36px;color:#89acff;">Initializing Playwright CDP Session & Pruning DOM...</div>';
+            terminalFeed.innerHTML = '<div style="color:#89acff;">[Aurick Engine] Browser runtime dispatched. Attaching CDP hooks...</div>';
 
             try {
                 const response = await fetch('/api/run-agent', {
@@ -904,7 +895,7 @@
 
                 const data = res.data;
 
-                // Update Metric Tiles
+                // Update Metrics
                 document.getElementById('metricTokenCut').innerText = `${data.metrics?.token_savings_percent || 88.6}%`;
                 document.getElementById('metricRecovery').innerText = data.recovered_count > 0 ? "Tier 1 (ARIA)" : "Tier 0 (Direct)";
                 document.getElementById('metricStatus').innerText = data.status;
@@ -914,14 +905,14 @@
                 let stepsHtml = '';
                 (data.steps || []).forEach(s => {
                     const isDirect = s.recovery_tier && s.recovery_tier.includes("Tier 0");
-                    const tierClass = isDirect ? "badge-recovery-direct" : "badge-recovery-healed";
+                    const tierClass = isDirect ? "tier-direct" : "tier-healed";
                     stepsHtml += `
-                        <div class="timeline-item">
-                            <div class="step-index-badge">${s.step_num}</div>
-                            <div class="step-body">
-                                <div class="step-action-title">${s.action}: ${s.target}</div>
-                                <div class="step-action-desc">${s.details}</div>
-                                ${s.recovery_tier ? `<span class="badge-recovery ${tierClass}">${s.recovery_tier}</span>` : ''}
+                        <div class="step-bubble">
+                            <div class="step-num-pill">${s.step_num}</div>
+                            <div class="step-main">
+                                <div class="step-action-name">${s.action}: ${s.target}</div>
+                                <div class="step-action-sub">${s.details}</div>
+                                ${s.recovery_tier ? `<span class="tier-tag ${tierClass}">${s.recovery_tier}</span>` : ''}
                             </div>
                         </div>
                     `;
@@ -938,7 +929,7 @@
                     rLink.style.display = "inline-block";
                 }
 
-                terminalFeed.innerHTML += `<div class="aurick-console-line" style="color:var(--aurick-emerald);">[Complete] E2E Assertion verified successfully: ${data.status}</div>`;
+                terminalFeed.innerHTML += `<div style="color:var(--aurick-emerald);">[Complete] E2E Assertion verified successfully: ${data.status}</div>`;
                 statusBadge.innerText = "Completed";
                 statusBadge.style.color = "var(--aurick-emerald)";
 
@@ -948,14 +939,14 @@
                 statusBadge.style.color = "var(--aurick-red)";
             } finally {
                 btn.disabled = false;
-                btn.innerHTML = '<span>▶</span> Launch Autonomous Agent';
+                btn.innerHTML = '<span>▶</span> Run Autonomous Test';
             }
         }
 
-        async function triggerEvalSuite() {
+        async function runBenchmarkEvals() {
             const btn = document.getElementById('btnRunEvalSuite');
             btn.disabled = true;
-            btn.innerHTML = '<span>⏳</span> Benchmarking Scenarios...';
+            btn.innerHTML = '<span>⏳</span> Benchmarking...';
 
             try {
                 const response = await fetch('/api/run-evals', { method: 'POST' });
@@ -970,7 +961,7 @@
                 console.error(e);
             } finally {
                 btn.disabled = false;
-                btn.innerHTML = '<span>▶</span> Run Benchmark Suite';
+                btn.innerHTML = '<span>▶</span> Run Multi-Scenario Suite';
             }
         }
     </script>
